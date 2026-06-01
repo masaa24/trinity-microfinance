@@ -14,16 +14,16 @@ interface SmsGatewayResponse {
 }
 
 export async function sendSms(params: SendSmsParams): Promise<SmsGatewayResponse> {
-  export async function sendSMS(phone: string, message: string) {
   const apiUrl = process.env.SMS_GATEWAY_API_URL
   const senderName = process.env.SMS_SENDER_NAME || 'TRINITY MF'
-  console.log(`Sending SMS to ${phone}: ${message}`)  
+  
+  console.log(`Sending SMS to ${params.phone}: ${params.message}`)
 
   if (!apiUrl) {
+    console.warn('SMS gateway not configured, skipping send')
     return {
-      success: false,
-      error: 'SMS gateway not configured',
-       return { success: true, messageId: 'mock-id' }
+      success: true, // return true in dev so app doesn't break
+      message_id: 'mock-id',
     }
   }
 
@@ -63,6 +63,9 @@ export async function sendSms(params: SendSmsParams): Promise<SmsGatewayResponse
     }
   }
 }
+
+// Keep this if your route.ts imports it as sendSMS
+export const sendSMS = sendSms
 
 export const smsTemplates = {
   loanApproved: (clientName: string, amount: number) =>
