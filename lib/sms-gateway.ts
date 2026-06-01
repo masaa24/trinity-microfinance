@@ -14,13 +14,16 @@ interface SmsGatewayResponse {
 }
 
 export async function sendSms(params: SendSmsParams): Promise<SmsGatewayResponse> {
+  export async function sendSMS(phone: string, message: string) {
   const apiUrl = process.env.SMS_GATEWAY_API_URL
   const senderName = process.env.SMS_SENDER_NAME || 'TRINITY MF'
+  console.log(`Sending SMS to ${phone}: ${message}`)  
 
   if (!apiUrl) {
     return {
       success: false,
       error: 'SMS gateway not configured',
+       return { success: true, messageId: 'mock-id' }
     }
   }
 
