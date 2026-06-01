@@ -82,6 +82,6 @@ export const smsTemplates = {
   paymentReceived: (clientName: string, amount: number, balance: number) =>
     `Hi ${clientName}, we received TZS ${amount.toLocaleString()}. Outstanding balance: TZS ${balance.toLocaleString()}. - TRINITY MF`,
 
-  overduNotice: (clientName: string, amount: number, daysOverdue: number) =>
+  overdueNotice: (clientName: string, amount: number, daysOverdue: number) =>
     `Hi ${clientName}, your loan is ${daysOverdue} days overdue. Amount due: TZS ${amount.toLocaleString()}. Please visit Trinity MF office. - TRINITY MF`,
 }
